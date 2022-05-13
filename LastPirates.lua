@@ -1000,7 +1000,9 @@ end
 
 local DinoWindow = Dino:CreateWindow("Last Pirates")
 local DinoPage = DinoWindow:NewPage("Main")
+local DinoPage2 = DinoWindow:NewPage("Main")
 local Home = DinoPage:NewSection("Auto Farm")
+local Home2 = DinoPage2:NewSection("Auto Stats")
 
     
     Home:CreateToggle("Auto Farm Level",function(value)
@@ -1008,33 +1010,75 @@ local Home = DinoPage:NewSection("Auto Farm")
        _G.NoClip = value
     end)
     
-        spawn(function()
-       game:GetService("RunService").RenderStepped:Connect(function()
-        pcall(function()
-            if _G.Auto then
-                CheckLevel()
+    Home2:CreateToggle("Melee",function(value)
+       _G.Melee = value
+while _G.Melee do wait()
+
 local args = {
-    [1] = Qn
+    [1] = 1,
+    [2] = "1"
 }
 
-game:GetService("ReplicatedStorage").FuncQuest:InvokeServer(unpack(args))
-            end
-        end)
-       end)
-        end)
+game:GetService("ReplicatedStorage").okStats:FireServer(unpack(args))
+    end
+    end)
+    
+    Home2:CreateToggle("Sword",function(value)
+       _G.Sword = value
+while _G.Sword do wait()
+
+local args = {
+    [1] = 1,
+    [2] = "2"
+}
+
+game:GetService("ReplicatedStorage").okStats:FireServer(unpack(args))
+    end
+    end)
+    
+    Home2:CreateToggle("Defense",function(value)
+       _G.Def = value
+while _G.Def do wait()
+
+local args = {
+    [1] = 1,
+    [2] = "3"
+}
+
+game:GetService("ReplicatedStorage").okStats:FireServer(unpack(args))
+    end
+    end)
+        
+    Home2:CreateToggle("Devil Fruits",function(value)
+       _G.DF = value
+while _G.DF do wait()
+
+local args = {
+    [1] = 1,
+    [2] = "4"
+}
+
+game:GetService("ReplicatedStorage").okStats:FireServer(unpack(args))
+    end
+    end)
         
 spawn(function()
 
-    while wait(.3) do
+    while wait(.1) do
 
             if _G.Auto then
 
+                if game:GetService("Players").LocalPlayer.PlayerGui.QuestGui.Enabled == true then
+
                     for _,v in pairs(game:GetService("Workspace").Lives:GetChildren()) do
+
+                            CheckLevel()
+
                             if v.Name == _G.Ms then
 
                                 pcall(function()
 
-game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+                                    if string.find(game:GetService("Players").LocalPlayer.Quest.Doing.Value, Qn) then
 
                                         repeat game:GetService("RunService").Heartbeat:wait(0.3)
 
@@ -1046,16 +1090,29 @@ game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.
 
                                         until v.Humanoid.Health <= 0 or _G.Auto == false
 
-                                    end)
-                                end
+                                    else
+
+                                        game:GetService("Players").LocalPlayer.PlayerGui.QuestGui.Enabled = false
+
+                                    end
+
+                                end)
 
                         end
 
                     end
 
-            end
+                elseif game:GetService("Players").LocalPlayer.PlayerGui.QuestGui.Enabled == false then
 
+                    CheckLevel()
+
+                    game:GetService("ReplicatedStorage").FuncQuest:InvokeServer(Qn) --Qn
+
+                end
+            end
+        end
     end)
+    
     
     spawn(function()
         game:GetService("RunService").Heartbeat:Connect(function()
