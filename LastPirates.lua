@@ -1094,7 +1094,7 @@ spawn(function()
 
                                         repeat game:GetService("RunService").Heartbeat:wait(0.3)
 
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,-7,0) * CFrame.Angles(math.rad(90),0,0)
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,-8,0) * CFrame.Angles(math.rad(90),0,0)
 
                                             game:GetService'VirtualUser':CaptureController()
 
