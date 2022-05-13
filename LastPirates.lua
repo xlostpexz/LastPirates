@@ -75,13 +75,25 @@ elseif Lv >= 15 and Lv <= 29 then
 
         Qn = "Monkey"
 
-    elseif Lv >= 1400 then 
+    elseif Lv >= 1400 and 1599 then 
 
         _G.Ms = "Skeleton [Lv:1400]"
 
         Qn = "Skeleton"
+    elseif Lv >= 1600 and Lv <= 1899 then
+
+        _G.Ms = "Elite Marine [Lv:1600]"
+
+        Qn = "Elite Marine"
+        
+    elseif Lv >= 1900 then
+
+        _G.Ms = "Savarian_Bandit [Lv:1900]"
+
+        Qn = "Savarian_Bandit"
     end
-    end
+end
+
 
 	 local DINOHUB = Instance.new("ScreenGui")
 local OPENCLOSE = Instance.new("TextButton")
@@ -1000,7 +1012,7 @@ end
 
 local DinoWindow = Dino:CreateWindow("Last Pirates")
 local DinoPage = DinoWindow:NewPage("Main")
-local DinoPage2 = DinoWindow:NewPage("Main")
+local DinoPage2 = DinoWindow:NewPage("Auto Stats")
 local Home = DinoPage:NewSection("Auto Farm")
 local Home2 = DinoPage2:NewSection("Auto Stats")
 
